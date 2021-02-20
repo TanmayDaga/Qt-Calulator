@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include<QString>
+#include<QJSEngine>
+#include<QJSValue>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -89,4 +91,15 @@ void MainWindow::on_pushButton_9_clicked()
 void MainWindow::on_pushButton_13_clicked()
 {
     ui->lineEdit->setText(ui->lineEdit->displayText()+"/");
+}
+
+
+
+void MainWindow::on_pushButton_14_clicked()
+{
+    QJSEngine myEngine;
+    QJSValue expr = myEngine.evaluate(ui->lineEdit->displayText());
+    ui->lineEdit->setText(expr.toString());
+
+
 }
