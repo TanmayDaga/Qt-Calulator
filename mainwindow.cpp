@@ -153,3 +153,8 @@ void MainWindow::on_pushButton_20_clicked()
     }
     QMessageBox::information(this,QString("History"),his);
 }
+
+void MainWindow::on_lineEdit_returnPressed()
+{
+    MainWindow::on_pushButton_14_clicked();
+}
