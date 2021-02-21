@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>395</width>
-    <height>332</height>
+    <height>313</height>
    </rect>
   </property>
   <property name="font">
@@ -18,6 +18,13 @@
   </property>
   <property name="windowTitle">
    <string>Calculator</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>icon.png</normaloff>icon.png</iconset>
+  </property>
+  <property name="windowOpacity">
+   <double>0.890000000000000</double>
   </property>
   <property name="layoutDirection">
    <enum>Qt::RightToLeft</enum>
@@ -222,7 +229,6 @@
     </layout>
    </widget>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>
