@@ -3,13 +3,23 @@
 #include<QString>
 #include<QJSEngine>
 #include<QJSValue>
+#include<QFile>
+#include<QFileInfo>
+#include<QIODevice>
+#include<QTextStream>
+#include<QMessageBox>
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+
 }
+
+
 
 MainWindow::~MainWindow()
 {
@@ -98,8 +108,48 @@ void MainWindow::on_pushButton_13_clicked()
 void MainWindow::on_pushButton_14_clicked()
 {
     QJSEngine myEngine;
-    QJSValue expr = myEngine.evaluate(ui->lineEdit->displayText());
-    ui->lineEdit->setText(expr.toString());
+    QString ques = ui->lineEdit->displayText();
+    QJSValue expr = myEngine.evaluate(ques);
+    if (expr.isError()){
+        ui->lineEdit->setText("Error");
+    }
+    else{
+        ui->lineEdit->setText(expr.toString());
+
+    }
+
+    QString filename = "/Users/tanmay06daga/Documents/qtprojs/Calculator/history.txt";
+    QFile file(filename);
+    file.open(QIODevice::Append);
+    QTextStream stream(&file);
+    stream << ques << " = " << expr.toString()<<endl;
+    file.close();
+}
+
+void MainWindow::on_pushButton_18_clicked()
+{
+    ui->lineEdit->setText(ui->lineEdit->displayText()+"(");
+}
+
+void MainWindow::on_pushButton_19_clicked()
+{
+    ui->lineEdit->setText(ui->lineEdit->displayText()+")");
+}
+
+void MainWindow::on_pushButton_17_clicked()
+{
+    ui->lineEdit->setText(QString());
+}
 
 
+void MainWindow::on_pushButton_20_clicked()
+{
+    QFile file("/Users/tanmay06daga/Documents/qtprojs/Calculator/history.txt");
+    file.open(QIODevice::ReadOnly);
+    QTextStream stream(&file);
+    QString his;
+    while(! stream.readLine().isNull()){
+        his.append(stream.readLine()+"\n");
+    }
+    QMessageBox::information(this,QString("History"),his);
 }
