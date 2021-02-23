@@ -117,7 +117,7 @@ void MainWindow::on_pushButton_14_clicked()
 
     }
 
-    QString filename = "/Users/tanmay06daga/Documents/qtprojs/Calculator/history.txt";
+    QString filename = "history.txt";
     QFile file(filename);
     file.open(QIODevice::Append);
     QTextStream stream(&file);
@@ -143,7 +143,7 @@ void MainWindow::on_pushButton_17_clicked()
 
 void MainWindow::on_pushButton_20_clicked()
 {
-    QFile file("/Users/tanmay06daga/Documents/qtprojs/Calculator/history.txt");
+    QFile file("history.txt");
     file.open(QIODevice::ReadOnly);
     QTextStream stream(&file);
     QString his;
